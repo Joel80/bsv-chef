@@ -21,7 +21,6 @@ diet2 = Diet.VEGAN
 def test_get_receipe_readiness_1():
     mockedDao = mock.MagicMock()
     sut = ReceipeController(mockedDao)
-    print(diet1.name.lower())
     with patch('src.controllers.receipecontroller.calculate_readiness', return_value = 0.09):
        readiness =  sut.get_readiness_of_receipes(receipe, {}, diet1)
     assert readiness is None
@@ -43,9 +42,9 @@ def test_get_receipe_readiness_3():
     assert readiness == 0.1
 
 @pytest.mark.unit
-def test_get_receipe_readiness_3():
+def test_get_receipe_readiness_4():
     mockedDao = mock.MagicMock()
     sut = ReceipeController(mockedDao)
     with patch('src.controllers.receipecontroller.calculate_readiness', return_value = 0.1):
        readiness =  sut.get_readiness_of_receipes(receipe, {}, diet2)
-    assert readiness == 0.1
+    assert readiness == None
